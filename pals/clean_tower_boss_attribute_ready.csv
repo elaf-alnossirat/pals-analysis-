@@ -1,0 +1,6 @@
+boss_pair,boss_name,hp,melee_attack,remote_attack,defense,support,experience_ratio,slow_walking_speed,walking_speed,running_speed
+Victor & Heterogeneous Griffin,Heterogeneous Griffin,120,130,120,140,90,1,80,80,850
+Zoe & Lightning Bear,Lightning Bear,105,120,100,100,100,1,80,140,470
+Marcus & Horus,Horus,100,100,105,110,90,1,150,200,1000
+Lily & Lily Queen,lily queen,110,100,110,105,100,1,60,100,450
+Axel & Pollux,Pollux,100,100,130,100,100,1,100,185,900
