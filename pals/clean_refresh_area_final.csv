@@ -1,0 +1,137 @@
+id,name,min_level,max_level,source
+1,Mian Youyou,1.0,14.0,min_level_table
+2,Naughty cat,1.0,13.0,min_level_table
+3,Pipi Chicken,1.0,13.0,min_level_table
+4,green leaf rat,2.0,13.0,min_level_table
+5,tinder fox,2.0,18.0,min_level_table
+6,surf duck,2.0,13.0,min_level_table
+7,Volt Meow,3.0,17.0,min_level_table
+8,Neolepithecus,2.0,13.0,min_level_table
+9,Fire Deer,2.0,13.0,min_level_table
+10,Keimaru,2.0,45.0,min_level_table
+11,King Keimaru,15.0,22.0,min_level_table
+12,electric rat,3.0,13.0,min_level_table
+13,ice agouti,10.0,10.0,min_level_table
+14,Ye Ni Ni (Special),2.0,14.0,min_level_table
+15,Ye NiNi,2.0,14.0,min_level_table
+16,Tamamo fox,3.0,13.0,min_level_table
+17,Tikar,3.0,14.0,min_level_table
+18,pot elephant,1.0,13.0,min_level_table
+19,Look at the devil,3.0,14.0,min_level_table
+20,Miruffy,2.0,14.0,min_level_table
+21,sleep demon,3.0,15.0,min_level_table
+22,sage pig,2.0,13.0,min_level_table
+23,Lunati,3.0,19.0,min_level_table
+24,Escape Rat,5.0,40.0,min_level_table
+25,squid,5.0,13.0,min_level_table
+26,ice cream,30.0,45.0,min_level_table
+27,Meowster,5.0,15.0,min_level_table
+28,Rumiel,2.0,13.0,min_level_table
+29,hunting wolves,4.0,15.0,min_level_table
+30,Fried egg bird,11.0,40.0,min_level_table
+31,Bona Rabbit,10.0,29.0,min_level_table
+32,Boba Cow,10.0,19.0,min_level_table
+33,Thorn Fairy,16.0,29.0,min_level_table
+34,Sharkboy,20.0,29.0,min_level_table
+35,red shark,25.0,38.0,min_level_table
+36,Hanging spirit,14.0,40.0,min_level_table
+37,Icebound Spirit,33.0,35.0,min_level_table
+38,Ye Panda,25.0,29.0,min_level_table
+39,Lei Panda,31.0,37.0,min_level_table
+40,Marshmallow,14.0,19.0,min_level_table
+41,bush sheep,6.0,41.0,min_level_table
+42,Melupa,5.0,17.0,min_level_table
+43,Only a deer,18.0,22.0,min_level_table
+44,Zixia Deer,6.0,13.0,min_level_table
+45,Swift Falcon,9.0,40.0,min_level_table
+46,Ji Xiaotu,2.0,19.0,min_level_table
+47,Dark Demon Sheep,40.0,45.0,min_level_table
+48,Balrog Sheep,29.0,38.0,min_level_table
+49,Huan Yue Butterfly,18.0,29.0,min_level_table
+50,Blazing Ox,9.0,39.0,min_level_table
+51,Pa Pa Pa Catfish,14.0,38.0,min_level_table
+52,Black Crow Hermit,12.0,40.0,min_level_table
+53,Hot-blooded lizard,15.0,38.0,min_level_table
+54,punk lizard,29.0,40.0,min_level_table
+55,Moonscythe Demon,12.0,29.0,min_level_table
+56,Tianqinniao,9.0,29.0,min_level_table
+57,Feather Archer,21.0,29.0,min_level_table
+58,mountain shooter,30.0,40.0,min_level_table
+59,Iron Fist Ape,18.0,29.0,min_level_table
+60,knight bee,20.0,25.0,min_level_table
+61,queen bee,28.0,31.0,min_level_table
+62,Laughing Nightmare Cat,17.0,29.0,min_level_table
+63,Mao duster,7.0,27.0,min_level_table
+64,Dad Mao,11.0,32.0,min_level_table
+65,Whirling Weasel,11.0,45.0,min_level_table
+66,thunder wildebeest,7.0,31.0,min_level_table
+67,blowing snow fox,28.0,32.0,min_level_table
+68,fire unicorn,29.0,38.0,min_level_table
+69,evil unicorn,32.0,38.0,min_level_table
+70,Deer in severe winter,25.0,45.0,min_level_table
+71,thunder dog,30.0,40.0,min_level_table
+72,Blue Flame Wolf,28.0,32.0,min_level_table
+73,Thunder Boy,29.0,40.0,min_level_table
+74,Mystia,32.0,45.0,min_level_table
+75,Thunder Guanlong,35.0,47.0,min_level_table
+76,Corolla dragon,10.0,39.0,min_level_table
+77,water-sliding snake,14.0,26.0,min_level_table
+78,quicksand snake,30.0,40.0,min_level_table
+79,Soul Eater,36.0,45.0,min_level_table
+80,Rock Crusher Turtle,17.0,40.0,min_level_table
+81,cat bat monster,5.0,45.0,min_level_table
+82,fraternity lizard,18.0,40.0,min_level_table
+83,Rong Yan Niang,9.0,38.0,min_level_table
+84,Fenggelong,10.0,40.0,min_level_table
+85,Frost Song Dragon,36.0,45.0,min_level_table
+86,Wave Blade Samurai,23.0,45.0,min_level_table
+87,Thunderbird,29.0,40.0,min_level_table
+88,Flamingo,34.0,38.0,min_level_table
+89,dark witch cat,20.0,29.0,min_level_table
+90,Flame Witch Fox,16.0,38.0,min_level_table
+91,spring rabbit,35.0,45.0,min_level_table
+92,Verita,18.0,38.0,min_level_table
+93,silk moth,36.0,45.0,min_level_table
+94,Faerie Dragon,18.0,45.0,min_level_table
+95,Huo Linger,9.0,38.0,min_level_table
+96,Shui Linger,9.0,19.0,min_level_table
+97,Bihailong,17.0,22.0,min_level_table
+98,Ice Thorn Beast,36.0,45.0,min_level_table
+99,Hell King,33.0,38.0,min_level_table
+100,Hellfire King,34.0,38.0,min_level_table
+101,Pecorone,15.0,20.0,min_level_table
+102,Parker,31.0,31.0,min_level_table
+103,Allother,30.0,30.0,min_level_table
+104,Lian Lilong,17.0,23.0,min_level_table
+105,Hualina,18.0,28.0,min_level_table
+106,Frost Beast,42.0,45.0,min_level_table
+107,Lava Beast,34.0,38.0,min_level_table
+108,King Melupa,23.0,45.0,min_level_table
+109,Ice Emperor Melpa,46.0,46.0,min_level_table
+110,snow mammoth,41.0,45.0,min_level_table
+111,Mammoth,30.0,40.0,min_level_table
+112,Green Moss Velvet,38.0,45.0,min_level_table
+113,White Velvet Snow Monster,41.0,45.0,min_level_table
+114,Kaigres,30.0,45.0,min_level_table
+115,Cloud sea deer,15.0,45.0,min_level_table
+116,Night Mephit,20.0,31.0,min_level_table
+117,Tianyulong,23.0,45.0,min_level_table
+118,Flame Glory,40.0,49.0,min_level_table
+119,Thunderbird,24.0,28.0,min_level_table
+120,Demon Dragon,40.0,48.0,min_level_table
+121,Dark Armored Scorpion,40.0,45.0,min_level_table
+122,Anubis,47.0,47.0,min_level_table
+123,Sea-covering dragon,45.0,45.0,min_level_table
+124,Teng Yanlong,40.0,45.0,min_level_table
+125,Qingque,42.0,45.0,min_level_table
+126,Suzaku,40.0,45.0,min_level_table
+127,Lightning Bear,18.0,22.0,min_level_table
+128,lily queen,40.0,45.0,min_level_table
+129,black moon queen,49.0,49.0,min_level_table
+130,Horus,40.0,45.0,min_level_table
+131,Pollux,40.0,45.0,min_level_table
+132,Heterogeneous Griffin,40.0,45.0,min_level_table
+133,Knight of Light,50.0,50.0,min_level_table
+134,Chaos Knight,50.0,50.0,min_level_table
+135,Winter Caller,50.0,50.0,min_level_table
+136,Vortex Dragon,50.0,50.0,min_level_table

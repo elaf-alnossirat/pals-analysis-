@@ -1,113 +1,69 @@
+
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-from sqlalchemy import create_engine
+import plotly.express as px
 
-# Configuration de la page
-st.set_page_config(page_title="Analyse des Pals - Palworld", layout="wide")
-st.title("\U0001F9E0 Analyse Stratégique des Pals - Palworld")
+# Page config
+st.set_page_config(page_title="Palworld Dashboard", layout="wide")
+st.title("🌐 Palworld Strategic Dashboard")
 
-# Connexion à la base de données via SQLAlchemy
-@st.cache_resource
-def connect_to_database():
-    url = "mysql+pymysql://root:root@localhost/palworld_database"
-    engine = create_engine(url)
-    return engine
+# Charger les données
+df = pd.read_csv("dashboard_data_ready.csv")
+df = df.drop_duplicates(subset='code_name')
+df["power_score"] = df["hp"].fillna(0) + df["melee_attack"].fillna(0) + df["remote_attack"].fillna(0) + df["defense"].fillna(0)
 
-engine = connect_to_database()
+# KPIs
+total_pals = len(df)
+avg_hp = round(df["hp"].mean(), 1)
+avg_attack = round((df["melee_attack"] + df["remote_attack"]).mean(), 1)
+avg_rarity = round(df["rarity"].mean(), 1)
 
-# Fonction d'exécution de requêtes
-@st.cache_data
-def run_query(query):
-    return pd.read_sql(query, engine)
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("🧬 Total Pals", total_pals)
+col2.metric("❤️ HP Moyen", avg_hp)
+col3.metric("⚔️ Attaque Moyenne", avg_attack)
+col4.metric("💎 Rareté Moyenne", avg_rarity)
 
-# Affichage des graphiques
+st.markdown("---")
 
-def plot_bar(df, x_col, y_col, title, xlabel, ylabel, color='skyblue', rotation=45):
-    fig, ax = plt.subplots()
-    df.plot(kind="bar", x=x_col, y=y_col, legend=False, color=color, ax=ax)
-    ax.set_title(title)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-    plt.xticks(rotation=rotation)
-    st.pyplot(fig)
+# Filtres dans la sidebar
+st.sidebar.header("🎛️ Filtres")
 
-def plot_hist(data, title, xlabel, ylabel, color='salmon'):
-    fig, ax = plt.subplots()
-    ax.hist(data, bins=20, color=color, edgecolor='black')
-    ax.set_title(title)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-    st.pyplot(fig)
+rarity_options = sorted(df["rarity"].dropna().unique())
+selected_rarities = st.sidebar.multiselect("Rareté", rarity_options, default=rarity_options)
 
-# Tabs : Combat / Camp
-combat_tab, camp_tab = st.tabs(["\U0001F6E1️ Optimisation Combat", "⚒️ Gestion de Campement"])
+element_options = sorted(df["element_1"].dropna().unique())
+selected_elements = st.sidebar.multiselect("Élément", element_options, default=element_options)
 
-# ----- Onglet Combat ----- #
-with combat_tab:
-    st.subheader("⚔️ Analyse des Pals pour le Combat")
+filtered_df = df[
+    (df["rarity"].isin(selected_rarities)) &
+    (df["element_1"].isin(selected_elements))
+]
 
-    # Filtres interactifs multiples avec case à cocher
-    rarity_options = list(run_query("SELECT DISTINCT rarity FROM combat_attribute WHERE rarity IS NOT NULL AND rarity != '' ORDER BY CAST(rarity AS UNSIGNED);")["rarity"])
-    show_all_rarities = st.checkbox("Afficher toutes les raretés", value=True)
-    if show_all_rarities:
-        rarity_filter = rarity_options
-    else:
-        rarity_filter = st.multiselect("Filtrer par raretés :", options=rarity_options, default=rarity_options)
+# Graphique top puissance
+st.subheader("💥 Top 10 Pals les plus puissants")
+top_power = filtered_df[["code_name", "power_score"]].sort_values(by="power_score", ascending=False).head(10)
+fig = px.bar(top_power, x="code_name", y="power_score", color="power_score", labels={"code_name": "Pal", "power_score": "Puissance"}, color_continuous_scale="viridis")
+fig.update_layout(xaxis_title="", yaxis_title="Puissance")
+st.plotly_chart(fig, use_container_width=True)
 
-    rarity_condition = "" if not rarity_filter else f"AND rarity IN ({', '.join([f'\'{r}\'' for r in rarity_filter])})"
+# === Section Fiche Pal ===
+st.markdown("### 🔎 Fiche détaillée d'un Pal")
+selected_pal = st.selectbox("Choisir un Pal", df["code_name"].sort_values().unique())
+pal_data = df[df["code_name"] == selected_pal].iloc[0]
 
-    # Points de vie (HP) avec filtre
-    query_hp = f"""
-    SELECT hp FROM combat_attribute
-    WHERE hp IS NOT NULL AND hp > 0 {rarity_condition};
-    """
-    df_hp = run_query(query_hp)
-    plot_hist(df_hp["hp"], "Distribution des points de vie des Pals", "HP", "Nombre de Pals")
+with st.expander(f"📘 Détails pour {selected_pal}"):
+    stats_cols = st.columns(4)
+    stats_cols[0].metric("HP", pal_data["hp"])
+    stats_cols[1].metric("Attaque mêlée", pal_data["melee_attack"])
+    stats_cols[2].metric("Attaque à distance", pal_data["remote_attack"])
+    stats_cols[3].metric("Défense", pal_data["defense"])
 
-    # Rareté (graphique global)
-    query_rarity = """
-    SELECT rarity, COUNT(*) AS count
-    FROM combat_attribute
-    WHERE rarity IS NOT NULL AND rarity != ''
-    GROUP BY rarity
-    ORDER BY CAST(rarity AS UNSIGNED);
-    """
-    df_rarity = run_query(query_rarity)
-    df_rarity["rarity"] = df_rarity["rarity"].astype(str)
-    plot_bar(df_rarity, "rarity", "count", "Distribution de la rareté des Pals", "Rareté", "Nombre de Pals", color="goldenrod", rotation=0)
+    st.write("**Rareté :**", pal_data["rarity"])
+    st.write("**Élément :**", pal_data["element_1"])
+    st.write("**Vitesse de course :**", pal_data["running_speed"])
+    st.write("**Score de puissance :**", pal_data["power_score"])
 
-# ----- Onglet Campement ----- #
-with camp_tab:
-    st.subheader("⚒️ Répartition des Pals pour la Production")
-
-    # Filtres interactifs multiples avec case à cocher
-    size_options = list(run_query("SELECT DISTINCT size FROM hidden_attribute WHERE size IS NOT NULL AND size != ''; ")["size"])
-    show_all_sizes = st.checkbox("Afficher toutes les tailles", value=True)
-    if show_all_sizes:
-        size_filter = size_options
-    else:
-        size_filter = st.multiselect("Filtrer par tailles :", options=size_options, default=size_options)
-
-    size_condition = "" if not size_filter else f"AND size IN ({', '.join([f'\'{s}\'' for s in size_filter])})"
-
-    # Taille
-    query_size = f"""
-    SELECT size, COUNT(*) AS count
-    FROM hidden_attribute
-    WHERE size IS NOT NULL AND size != '' {size_condition}
-    GROUP BY size;
-    """
-    df_size = run_query(query_size)
-    plot_bar(df_size, "size", "count", "Distribution des tailles de Pals", "Taille", "Nombre de Pals", color="skyblue")
-
-    # Catégorie (Genus)
-    query_genus = """
-    SELECT genuscategory, COUNT(*) AS count
-    FROM hidden_attribute
-    WHERE genuscategory IS NOT NULL AND genuscategory != ''
-    GROUP BY genuscategory
-    ORDER BY count DESC;
-    """
-    df_genus = run_query(query_genus)
-    plot_bar(df_genus, "genuscategory", "count", "Distribution des catégories de Pals", "Catégorie", "Nombre de Pals", color="lightgreen", rotation=90)
+# Tableau interactif
+st.markdown("### 📋 Détails des Pals filtrés")
+st.dataframe(filtered_df.sort_values(by="power_score", ascending=False), use_container_width=True)
